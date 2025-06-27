@@ -49,6 +49,13 @@ def get_reports(current_user):
     all_reports = Report.query.order_by(Report.date_of_incident.desc()).all()
     return jsonify(reports_schema.dump(all_reports)), 200
 
+# New endpoint for user-specific reports
+@api.route('/my_reports', methods=['GET'])
+@token_required
+def get_my_reports(current_user):
+    user_reports = Report.query.filter_by(user_id=current_user.id).order_by(Report.date_of_incident.desc()).all()
+    return jsonify(reports_schema.dump(user_reports)), 200
+
 @api.route('/news', methods=['GET'])
 def get_news_articles():
     articles = NewsArticle.query.order_by(NewsArticle.published_date.desc()).all()

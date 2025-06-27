@@ -21,7 +21,10 @@ def create_app(config_name):
     db.init_app(app)
     migrate.init_app(app, db)
     bcrypt.init_app(app)
-    CORS(app, resources={r"/api/*": {"origins": "*"}}) # Allow all origins for development
+    
+    # This line is critical. It tells your backend to accept API requests
+    # from your frontend server.
+    CORS(app, resources={r"/api/*": {"origins": "http://localhost:5173"}}) 
 
     # Swagger configuration
     app.config['SWAGGER'] = {
