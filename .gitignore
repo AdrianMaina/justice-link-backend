@@ -1,0 +1,19 @@
+# Virtual Environment
+venv/
+*.pyc
+__pycache__/
+
+# Environment files
+.env
+.flaskenv
+
+# Instance folder
+instance/
+
+# IDE files
+.idea/
+.vscode/
+
+# Other
+*.sqlite3
+*.db
